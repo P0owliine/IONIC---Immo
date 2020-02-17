@@ -1,0 +1,20 @@
+#images-annonce{
+  height:56%;
+  min-height:56%;
+
+  .slide-zoom {
+    // height:200px;
+    height: 100%;
+    // overflow:hidden;
+  }
+
+  ion-slides {
+    height: 100%;
+
+    ion-img{
+      object-fit: contain;
+    }
+  }
+
+}
+
