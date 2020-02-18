@@ -15,6 +15,31 @@
       object-fit: contain;
     }
   }
+}
 
+#texte-annonce{
+
+  #header{
+    border-bottom: rgba(127,127,127,0.1) solid 1px;
+  }
+
+  p{
+    font-size: 12px;
+    margin: 0 8px 4px;
+  }
+  #titre{
+    margin: 4px 8px 0 8px;
+  }
+
+  #prix{
+    margin: 4px 8px 4px 8px;
+    font-weight: bold;
+  }
+
+  h5{
+    margin-left: 8px;
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
 }
 
