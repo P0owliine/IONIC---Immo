@@ -1,1 +1,30 @@
+img{
+  width: 100px;
+}
+
+ion-card{
+  display: flex;
+  height: 75px;
+}
+
+ion-card-title{
+  font-size: 14px;
+}
+
+ion-card-content{
+  position: relative;
+  justify-content: flex-end;
+}
+
+p{
+  font-size: 12px;
+}
+
+.date{
+  font-size: 10px;
+}
+
+ion-list, ion-footer{
+  display: none;
+}
 

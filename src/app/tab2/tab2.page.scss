@@ -1,1 +1,33 @@
+img{
+  width: 155px;
+}
+
+ion-card{
+  display: flex;
+  height: 120px;
+}
+
+ion-card-title{
+  font-size: 13px;
+}
+
+ion-card-content{
+  position: relative;
+  justify-content: flex-end;
+}
+
+p{
+  font-size: 12px;
+}
+
+.price{
+  padding-top: 10px;
+  color: red;
+  font-weight: bolder;
+  font-size: 13px;
+}
+
+.date{
+  font-size: 10px;
+}
 

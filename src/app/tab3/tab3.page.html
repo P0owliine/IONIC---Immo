@@ -5,6 +5,17 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-card class="welcome-card" (click)="showMessage()">
+    <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+    <ion-card-content>
+      <ion-card-title>Nom</ion-card-title>
+      <p>Annonce ..</p>
+      <p class="date">date + message..</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
 <ion-list>
   <ion-item *ngFor="let show of messages">
     <ion-badge color="primary" item-left>{{show}}</ion-badge>
@@ -16,4 +27,3 @@
     <ion-button item-right (click)="sendMessage()">Envoyer</ion-button>
   </ion-item>
 </ion-footer>
-<ion-content></ion-content>

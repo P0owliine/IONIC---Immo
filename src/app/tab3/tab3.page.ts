@@ -18,6 +18,12 @@ toast: any;
     });
     return await this.toast.present();
   }
+  showMessage() {
+    alert('afficher la partie de samy');
+    // hide ion-content
+    // show ion-list and ion-footer
+    // afficher les messages de la BDD
+  }
   sendMessage() {
     if (this.messageInput !== '') {
       this.messages.push(this.messageInput);
