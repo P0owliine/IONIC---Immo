@@ -15,4 +15,8 @@ export class DetailsAnnoncePage implements OnInit {
   ngOnInit() {
   }
 
+  changeIcon() {
+    const saveIcon = document.getElementById('save-icon');
+    saveIcon.setAttribute('name', 'heart');
+  }
 }
