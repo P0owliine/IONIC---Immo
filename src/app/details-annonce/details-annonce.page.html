@@ -2,13 +2,13 @@
   <div id="images-annonce">
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide>
-        <h1><ion-img src="../../assets/icon/annonce1-1.jpeg"></ion-img></h1>
+        <ion-img src="../../assets/icon/annonce1-1.jpeg"></ion-img>
       </ion-slide>
       <ion-slide>
-        <h1><ion-img src="../../assets/icon/annonce1-2.jpeg"></ion-img></h1>
+        <ion-img src="../../assets/icon/annonce1-2.jpeg"></ion-img>
       </ion-slide>
       <ion-slide>
-        <h1><ion-img src="../../assets/icon/annonce1-3.jpeg"></ion-img></h1>
+        <ion-img src="../../assets/icon/annonce1-3.jpeg"></ion-img>
       </ion-slide>
     </ion-slides>
   </div>
@@ -23,32 +23,48 @@
       <ion-row>
         <ion-col>
           <ion-text color="medium"><p>SURFACE</p></ion-text>
-          <p>101m²</p>
+          <p id="surface">101m²</p>
         </ion-col>
         <ion-col>
           <ion-text color="medium"><p>RÉFÉRENCE</p></ion-text>
-          <p>170910</p>
+          <p id="ref">170910</p>
         </ion-col>
       </ion-row>
       <ion-row>
       <ion-col>
         <ion-text color="medium"><p>TYPE DE BIEN</p></ion-text>
-        <p>Appartement</p>
+        <p id="type-bien">Appartement</p>
       </ion-col>
       <ion-col>
         <ion-text color="medium"><p>GES</p></ion-text>
-        <p>D (de 21 à 35)</p>
+        <p id="GES">D (de 21 à 35)</p>
       </ion-col>
       </ion-row>
     </ion-grid>
     <ion-text color="primary"><h5>Description</h5></ion-text>
-    <p>NANCY Rue Raymond Poincaré, charmant T 5 de caractére
+    <p id="desc">NANCY Rue Raymond Poincaré, charmant T5 de caractère
     composé dune entrée avec placards, salon/séjour, cuisine
     équipée, 2 chambres et un bureau, dépendances. Copro 5 lots
-    charges 80€/mois
-    <br>Référence annonce : 170910</p>
-
+    charges 80€/mois</p>
+    <p id="desc-ref">Référence annonce : 170910</p>
   </div>
-
-
 </ion-content>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" color="primary">
+
+        <ion-tab-button tab="contact">
+          <ion-icon name="call"></ion-icon>
+          <ion-label>Contacter</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="email">
+          <ion-icon name="mail"></ion-icon>
+          <ion-label>Email</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="save">
+          <ion-icon name="heart-empty"></ion-icon>
+          <ion-label>Sauvegarder</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
