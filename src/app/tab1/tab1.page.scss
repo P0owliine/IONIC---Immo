@@ -2,3 +2,111 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.mobile {
+  display: none;
+}
+
+body {
+  background-color: #FFEBEE;
+  margin: 0;
+}
+
+div.map {
+  position: absolute;
+  top:15%;
+}
+
+div.map>svg>a>path {
+  fill: #EF5350;
+  transition: fill .5s;
+}
+
+div.map>svg>a>path:hover {
+  fill: #D32F2F;
+}
+
+div.map>svg {
+  position: absolute;
+  margin-left: calc(50vw - (739px/4));
+  z-index: 1;
+}
+
+.gap{
+  height: calc(50vh - (751px/2));
+  min-height: 55px;
+}
+
+svg.hdf {
+  top: 0;
+  left: 178.5px;
+  width: 75px;
+}
+
+svg.idf {
+  top: 82px;
+  left: 178.5px;
+  width: 56.5px;
+}
+
+svg.gre {
+  top: 48.5px;
+  left: 234px;
+  width: 134.5px;
+}
+
+svg.ndi {
+  top: 45px;
+  left: 85px;
+  width: 100px;
+}
+
+svg.plo {
+  top: 111px;
+  left: 62.5px;
+  width: 96px;
+}
+
+svg.bfc {
+  top: 119px;
+  left: 224px;
+  width: 119.5px;
+}
+
+svg.cvl {
+  top: 93.5px;
+  left: 136.5px;
+  width: 87px;
+}
+
+svg.ara {
+  top: 186px;
+  left: 197px;
+  width: 151px;
+}
+
+svg.naq {
+  top: 170px;
+  left: 78.5px;
+  width: 130px;
+}
+
+svg.bre {
+  top: 92.5px;
+  left: 0;
+  width: 102.5px;
+}
+
+svg.occ {
+  top: 265px;
+  left: 123px;
+  width: 155px;
+}
+
+svg.pac {
+  top: 260px;
+  left: 269.5px;
+  width: 100px;
+}
+
+
