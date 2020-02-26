@@ -1,27 +1,26 @@
 <ion-header>
     <ion-searchbar></ion-searchbar>
-  50 annonces
+  {{results.length}} annonces
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of items">
+    <ion-item *ngFor="let result in results">
       <ion-card class="welcome-card">
-      <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+      <img src="{{result.image}}" alt="" />
       <ion-card-content>
-        <ion-card-title>Titre</ion-card-title>
-        <p class="price">Prix €</p>
-        <p>type</p>
-        <p>lieu</p>
-        <p class="date">date</p>
+        <ion-card-title>{{result.titre}}</ion-card-title>
+        <p class="price">{{result.prix}}</p>
+        <p>{{result.type}}</p>
+        <p>{{result.place}}</p>
+        <p class="date">{{result.date}}</p>
       </ion-card-content>
     </ion-card></ion-item>
   </ion-list>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="nbScrolls <= 0">
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="getResults($event)">
     <ion-infinite-scroll-content
-            loadingSpinner="bubbles"
-            loadingText="Loading more data...">
+            loadingSpinner="bubbles">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

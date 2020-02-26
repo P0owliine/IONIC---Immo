@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+
+const optionRequete = {
+  headers : new HttpHeaders({'Access-Control-Allow-Origin': '*'})
+};
 
 @Component({
   selector: 'app-liste-resultats',
@@ -7,26 +12,25 @@ import { Component } from '@angular/core';
 })
 export class ListeResultatsPage {
 
-  items = [];
-  nbScrolls = 4;
+  results: any;
+  constructor(public http: HttpClient) {}
 
-  constructor() {
-    this.addMoreItems();
-  }
+  getResults(event) {
 
-  loadData(event) {
     setTimeout(() => {
       console.log('Done');
-      this.addMoreItems();
-      this.nbScrolls -= 1;
       event.target.complete();
+      return new Promise(resolve => {
+        this.http.get('http://localhost/immo-api/public/resultats/getResultats/5', optionRequete).subscribe(data => {
+          this.results = data;
+          if (this.results.length === 1000) {
+            event.target.disabled = true;
+          }
+          console.log(data);
+        }, err => {
+          console.log(err);
+        });
+      });
     }, 500);
   }
-
-  addMoreItems() {
-    for (let i = 0; i < 10; i++) {
-      this.items.push(i);
-    }
-  }
-
 }
