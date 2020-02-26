@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class ListeResultatsPage {
 
   items = [];
+  nbScrolls = 4;
 
   constructor() {
     this.addMoreItems();
@@ -17,6 +18,7 @@ export class ListeResultatsPage {
     setTimeout(() => {
       console.log('Done');
       this.addMoreItems();
+      this.nbScrolls -= 1;
       event.target.complete();
     }, 500);
   }

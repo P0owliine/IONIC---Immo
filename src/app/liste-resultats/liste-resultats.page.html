@@ -1,5 +1,6 @@
 <ion-header>
     <ion-searchbar></ion-searchbar>
+  50 annonces
 </ion-header>
 
 <ion-content>
@@ -17,7 +18,7 @@
     </ion-card></ion-item>
   </ion-list>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" [disabled]="nbScrolls <= 0">
     <ion-infinite-scroll-content
             loadingSpinner="bubbles"
             loadingText="Loading more data...">
