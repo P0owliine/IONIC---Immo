@@ -1,4 +1,5 @@
 <ion-header>
+
   <ion-toolbar>
     <ion-title>
       Favoris
@@ -6,17 +7,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!--<img src="/assets/icon/favoris.PNG" alt="" />-->
+<ion-content *ngFor="let favori of favoris">
+  <!-- si rien alors <img src="/assets/icon/favoris.PNG" alt="" />-->
 
+  {{ favori.title }}
   <ion-card class="welcome-card">
     <img src="/assets/icon/annonce1-1.jpeg" alt="" />
     <ion-card-content>
-      <ion-card-title>Titre</ion-card-title>
-      <p class="price">Prix €</p>
-      <p>type</p>
-      <p>lieu</p>
-      <p class="date">date</p>
+      <ion-card-title>{{ favori.title }}</ion-card-title>
+      <p class="price">{{ favori.price }} €</p>
+      <p>{{ favori.category }}</p>
+      <p>{{ favori.place }}</p>
+      <p class="date">{{ favori.place }</p>
     </ion-card-content>
   </ion-card>
 </ion-content>
