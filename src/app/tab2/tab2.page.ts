@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
+
 const optionRequete = {
     headers : new HttpHeaders({'Access-Control-Allow-Origin': '*'})
 };
@@ -16,10 +17,9 @@ export class Tab2Page {
     favoris: any;
 
   constructor(private http: HttpClient) {
-      this.getFavoris();
   }
     getFavoris() {
-        this.http.get(this.root + '/immo-api/public/favoris/getFavoris/5', optionRequete).subscribe(data => {
+        this.http.get(this.root + '/immo-api/public/favoris/getFavoris/5' + '&callback=?', optionRequete).subscribe(data => {
             this.favoris = data[0];
             console.log(data[0]);
         }, err => {

@@ -13,11 +13,12 @@ const optionRequete = {
 })
 
 export class Tab4Page {
-  readonly root = 'http://localhost';
+  readonly root = 'http://localhost:8000';
   posts: any;
   connected: string;
   usrInput: any;
   pwdInput: any;
+  data: any;
 
   constructor(private http: HttpClient) {
     this.testAPI();
@@ -25,15 +26,19 @@ export class Tab4Page {
 
   logUser() {
     console.log('Log button clicked');
-    // On mettra ici le script de connexion, en attendant y a ce qui a .... /**/
-    sessionStorage.setItem('loggedUser', this.usrInput);
-    this.connected = sessionStorage.getItem('loggedUser');
+    this.data = '{"username": ' + this.usrInput + ', "password": ' + this.pwdInput + '}';
+    if (this.http.post(this.root + '/compte/login', this.data, optionRequete)) {
+      sessionStorage.setItem('loggedUser', this.usrInput);
+      this.connected = sessionStorage.getItem('loggedUser');
+    } else {
+      console.log('nope');
+    }
   }
   checkIfLogged() {
     return sessionStorage.getItem('loggedUser') != null;
   }
   testAPI() {
-    this.http.get(this.root + '/immo-api/public/compte/getCompte/4', optionRequete).subscribe(data => {
+    this.http.get(this.root + '/compte/getCompte/4', optionRequete).subscribe(data => {
       this.posts = data;
       console.log(data[0].username);
     }, err => {
