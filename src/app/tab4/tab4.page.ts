@@ -16,6 +16,7 @@ export class Tab4Page {
   readonly root = 'http://localhost:8000';
   posts: any;
   connected: string;
+  userJson: any;
   usrInput: any;
   pwdInput: any;
   data: any;
@@ -29,6 +30,9 @@ export class Tab4Page {
     this.data = '{"username": ' + this.usrInput + ', "password": ' + this.pwdInput + '}';
     if (this.http.post(this.root + '/compte/login', this.data, optionRequete)) {
       sessionStorage.setItem('loggedUser', this.usrInput);
+      this.http.get(this.root + '/compte/getIdByUsername', optionRequete).subscribe(data => this.userJson = data);
+      JSON.parse(this.userJson);
+      sessionStorage.setItem('loggedId', this.userJson['id']);
       this.connected = sessionStorage.getItem('loggedUser');
     } else {
       console.log('nope');
