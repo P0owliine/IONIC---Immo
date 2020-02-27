@@ -12,18 +12,18 @@ const optionRequete = {
 })
 
 export class Tab2Page {
- favoris: any;
-  constructor(public http: HttpClient) {
+    readonly root = 'http://localhost';
+    favoris: any;
+
+  constructor(private http: HttpClient) {
       this.getFavoris();
   }
     getFavoris() {
-        return new Promise(resolve => {
-            this.http.get('http://localhost/immo-api/public/favoris/getFavoris/5', optionRequete).subscribe(data => {
-                this.favoris = data;
-                console.log(data);
-            }, err => {
-                console.log(err);
-            });
+        this.http.get(this.root + '/immo-api/public/favoris/getFavoris/5', optionRequete).subscribe(data => {
+            this.favoris = data[0];
+            console.log(data[0]);
+        }, err => {
+            console.log(err);
         });
     }
 
