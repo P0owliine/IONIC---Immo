@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-
+const optionRequete = {
+  headers : new HttpHeaders({'Access-Control-Allow-Origin': '*'})
+};
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
