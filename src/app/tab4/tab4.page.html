@@ -7,20 +7,38 @@
 </ion-header>
 
 <ion-header class="header">
-  <ion-icon name="contact"></ion-icon>
-  <ion-label>Nom</ion-label>
+  <ng-template [ngIf]=checkIfLogged()>
+    <ion-icon name="contact"></ion-icon>
+    <ion-label>{{connected}}</ion-label>
+  </ng-template>
+  <ng-template [ngIf]=!checkIfLogged()>
+    <ion-label>Vous êtes déconnecté(e)</ion-label>
+  </ng-template>
 </ion-header>
 
 <ion-content>
-  <ion-label>Mes annonces</ion-label>
-  <ion-card class="welcome-card">
-    <img src="/assets/icon/annonce1-1.jpeg" alt="" />
-    <ion-card-content>
-      <ion-card-title>Titre</ion-card-title>
-      <p class="price">Prix €</p>
-      <p>type</p>
-      <p>lieu</p>
-      <p class="date">date</p>
-    </ion-card-content>
-  </ion-card>
+  <ng-template [ngIf]=checkIfLogged()>
+    <ion-icon name="contact"></ion-icon>
+    <ion-label>Mes annonces</ion-label>
+    <ion-card class="welcome-card">
+      <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+      <ion-card-content>
+        <ion-card-title>Titre</ion-card-title>
+        <p class="price">Prix €</p>
+        <p>type</p>
+        <p>lieu</p>
+        <p class="date">date</p>
+        <ion-button (click)="testAPI()" expand="block" type="submit" class="ion-no-margin">Test connexion à l'API</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+  <ng-template [ngIf]=!checkIfLogged()>
+    <ion-list>
+      <ion-input [(ngModel)]="usrInput" placeholder="Utilisateur"></ion-input>
+      <ion-input type="password" [(ngModel)]="pwdInput" placeholder="Mot de passe"></ion-input>
+      <div class="ion-padding">
+        <ion-button (click)="logUser()" expand="block" type="submit" class="ion-no-margin">Se connecter</ion-button>
+      </div>
+    </ion-list>
+  </ng-template>
 </ion-content>
