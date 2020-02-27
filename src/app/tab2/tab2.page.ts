@@ -21,7 +21,7 @@ export class Tab2Page {
     getFavoris() {
         this.http.get(this.root + '/immo-api/public/favoris/getFavoris/5', optionRequete).subscribe(data => {
             this.favoris = data[0];
-            console.log(data[0]);
+            console.log(data);
         }, err => {
             console.log(err);
         });
