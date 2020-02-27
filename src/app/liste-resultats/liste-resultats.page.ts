@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 const optionRequete = {
   headers : new HttpHeaders({'Access-Control-Allow-Origin': '*'})
@@ -11,26 +12,21 @@ const optionRequete = {
   styleUrls: ['./liste-resultats.page.scss'],
 })
 export class ListeResultatsPage {
-
   results: any;
-  constructor(public http: HttpClient) {}
+  id = sessionStorage.getItem('clicked_region');
+  url = 'http://localhost/immo-api/public/annonce/getAnnoncesByRegion/' + this.id;
 
-  getResults(event) {
+  constructor(public http: HttpClient) {
+    console.log(this.id);
+    this.getAnnonces();
+  }
 
-    setTimeout(() => {
-      console.log('Done');
-      event.target.complete();
-      return new Promise(resolve => {
-        this.http.get('http://localhost/immo-api/public/resultats/getResultats/5', optionRequete).subscribe(data => {
-          this.results = data;
-          if (this.results.length === 1000) {
-            event.target.disabled = true;
-          }
-          console.log(data);
-        }, err => {
-          console.log(err);
-        });
-      });
-    }, 500);
+  public getAnnonces(): void {
+    let data: Observable<any>;
+    data = this.http.get(this.url, optionRequete);
+    data.subscribe(resultat => {
+      this.results = resultat;
+      console.log(this.results);
+    });
   }
 }
