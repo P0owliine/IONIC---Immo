@@ -22,7 +22,7 @@ export class Tab4Page {
   pwdInput: any;
   data: any;
   userId: any;
-  annonces: [];
+  announces: any [];
 
   constructor(private http: HttpClient) {}
   logUser() {
@@ -30,7 +30,7 @@ export class Tab4Page {
     this.data = '{"username": ' + this.usrInput + ', "password": ' + this.pwdInput + '}';
     if (this.http.post(this.root + '/compte/login', this.data, optionRequete)) {
       sessionStorage.setItem('loggedUser', this.usrInput);
-      this.http.get('http://localhost/immo-api/public/compte/getCompteByUsername/Popo', optionRequete).subscribe(result => {
+      this.http.get(this.root + '/compte/getCompteByUsername/Popo', optionRequete).subscribe(result => {
         this.userJson = result;
         this.userId = this.userJson[0].id;
         sessionStorage.setItem('loggedId', this.userId);
@@ -50,11 +50,10 @@ export class Tab4Page {
   testAPI(id) {
   console.log(id);
   this.http.get(this.root + '/annonce/getAnnoncesByCompte/' + id, optionRequete).subscribe(data => {
-    console.log(data[0].id + data[0].title);
-    this.annonces = [
-      { id: data[0].id, title: data[0].title }
-    ];
-    console.log(this.annonces);
+    console.log(data);
+    // this.announces = data;
+    this.announces.push(data);
+    console.log(this.announces);
     }, err => {
       console.log(err);
     });

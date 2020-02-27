@@ -17,13 +17,13 @@
 </ion-header>
 
 <ion-content>
-  <ng-template [ngIf]=checkIfLogged() *ngFor=" let annonce of annonces">
+  <ng-template [ngIf]=checkIfLogged() *ngFor=" let announce of announces">
     <ion-icon name="contact" ></ion-icon>
     <ion-label>Mes annonces</ion-label>
-    <ion-card class="welcome-card" *ngFor="let adata of annonce">
+    <ion-card class="welcome-card" >
       <img src="/assets/icon/annonce1-1.jpeg" alt="" />
       <ion-card-content>
-        <ion-card-title>{{ adata.title }}</ion-card-title>
+        <ion-card-title>{{ announce.title }}</ion-card-title>
         <p class="price">Prix €</p>
         <p>type</p>
         <p>lieu</p>
