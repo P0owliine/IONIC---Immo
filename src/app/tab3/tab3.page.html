@@ -6,6 +6,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ng-template [ngIf]=checkIfLogged()>
   <ion-card class="welcome-card" (click)="showMessage()">
     <img src="/assets/icon/annonce1-1.jpeg" alt="" />
     <ion-card-content>
@@ -14,13 +15,17 @@
       <p class="date">date + message..</p>
     </ion-card-content>
   </ion-card>
+    <ion-list>
+      <ion-item *ngFor="let annonce of annonces">
+        <ion-badge color="primary" item-left>{{annonce['title']}}</ion-badge>
+      </ion-item>
+    </ion-list>
+  </ng-template>
+  <ng-template [ngIf]=!checkIfLogged()>
+    <ion-label>Déconnecté(e).</ion-label>
+  </ng-template>
 </ion-content>
 
-<ion-list>
-  <ion-item *ngFor="let show of messages">
-    <ion-badge color="primary" item-left>{{show}}</ion-badge>
-  </ion-item>
-</ion-list>
 <ion-footer>
   <ion-item>
     <ion-input name="messageInput" [(ngModel)]="messageInput" placeholder="Ecrivez ici..."></ion-input>
