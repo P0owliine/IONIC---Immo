@@ -29,4 +29,11 @@ export class ListeResultatsPage {
       console.log(this.results);
     });
   }
+
+  clickAnnonce(id) {
+    sessionStorage.setItem('annonce_info', this.results[0].title);
+    console.log(this.results[0]);
+    console.log(sessionStorage.getItem('annonce_info'));
+    window.location.href = '../details-annonce';
+  }
 }

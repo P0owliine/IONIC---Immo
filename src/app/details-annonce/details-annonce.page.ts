@@ -5,15 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './details-annonce.page.html',
   styleUrls: ['./details-annonce.page.scss'],
 })
-export class DetailsAnnoncePage implements OnInit {
+export class DetailsAnnoncePage {
 
-  constructor() { }
+  data = sessionStorage.getItem('annonce_info');
+
+  constructor() {
+    console.log(this.data);
+  }
   slideOpts = {
     initialSlide: 1,
     speed: 400
   };
-  ngOnInit() {
-  }
 
   changeIcon() {
     const saveIcon = document.getElementById('save-icon');

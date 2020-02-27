@@ -11,7 +11,6 @@ export class Tab1Page {
 
   clickRegion(id) {
     sessionStorage.setItem('clicked_region', id);
-    console.log(sessionStorage.getItem('clicked_region'));
     window.location.href = '../liste-resultats';
   }
 
