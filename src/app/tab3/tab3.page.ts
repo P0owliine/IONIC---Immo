@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {forEach} from '@angular-devkit/schematics';
 const optionRequete = {
   headers : new HttpHeaders({'Access-Control-Allow-Origin': '*'})
 };
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-readonly root = 'http://localhost:8000';
-messageInput = '';
-messages = [];
-toast: any;
-annonces: any;
-  constructor(private toastCtrl: ToastController, private http: HttpClient) {}
+  readonly root = 'http://localhost:8000';
+  messageInput = '';
+  messages = [];
+  toast: any;
+  annonces: any;
+  constructor(private toastCtrl: ToastController, private http: HttpClient) {
+    this.getAnnonces();
+  }
   async settingToast() {
     this.toast = this.toastCtrl.create({
       message: 't kon ou quoi',
@@ -24,7 +28,7 @@ annonces: any;
     });
     return await this.toast.present();
   }
-  showMessage() {
+  showMessage(idAnnonce) {
     alert('afficher la partie de samy');
     // hide ion-content
     // show ion-list and ion-footer
@@ -44,10 +48,9 @@ annonces: any;
   }
 
   async getAnnonces() {
-    this.http.get(this.root + '/getAnnoncesByCompte/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
-      // @ts-ignore
-      JSON.parse(data);
+    this.http.get(this.root + '/annonce/getAnnoncesByCompte/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
       this.annonces = data;
+      JSON.parse(this.annonces);
     });
   }
 }

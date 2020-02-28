@@ -7,17 +7,17 @@
 </ion-header>
 <ion-content>
   <ng-template [ngIf]=checkIfLogged()>
-  <ion-card class="welcome-card" (click)="showMessage()">
-    <img src="/assets/icon/annonce1-1.jpeg" alt="" />
-    <ion-card-content>
-      <ion-card-title>Nom</ion-card-title>
-      <p>Annonce ..</p>
-      <p class="date">date + message..</p>
-    </ion-card-content>
-  </ion-card>
     <ion-list>
       <ion-item *ngFor="let annonce of annonces">
-        <ion-badge color="primary" item-left>{{annonce['title']}}</ion-badge>
+        <ion-card class="welcome-card" (click)="showMessage(annonce['id'])">
+          <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+          <ion-card-content>
+            <ion-card-title>{{annonce['title']}}</ion-card-title>
+            <p>{{annonce['detail']}}</p>
+            <p class="date">{{annonce['date']}}</p>
+            <p></p>
+          </ion-card-content>
+        </ion-card>
       </ion-item>
     </ion-list>
   </ng-template>
