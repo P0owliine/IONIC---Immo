@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {isEmpty} from "rxjs/operators";
 
 
 const optionRequete = {
@@ -13,18 +14,25 @@ const optionRequete = {
 })
 
 export class Tab2Page {
-    readonly root = 'http://localhost';
-    favoris: any;
+    readonly root = 'http://localhost/immo-api/public';
+    favoris: any ;
+    img: any;
 
   constructor(private http: HttpClient) {
+      this.getFavoris();
   }
     getFavoris() {
-        this.http.get(this.root + '/immo-api/public/favoris/getFavoris/5' + '&callback=?', optionRequete).subscribe(data => {
-            this.favoris = data[0];
-            console.log(data);
+      this.favoris = '';
+      this.img = '';
+      this.http.get(this.root + '/favoris/getFavoris/5', optionRequete).subscribe(data => {
+        this.favoris = data;
+        if (this.favoris.length === 0) {
+              this.img = '/assets/icon/favoris.PNG';
+          }
         }, err => {
             console.log(err);
         });
+
     }
 
 }

@@ -23,7 +23,7 @@ export class Tab4Page {
   pwdInput: any;
   data: any;
   userId: any;
-  announces: any [];
+  announces: any;
 
   constructor(private http: HttpClient) {}
   logUser() {
