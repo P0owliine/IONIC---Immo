@@ -3,12 +3,14 @@ img{
   object-fit: cover;
 }
 
-ion-content{
-  height: 500px;
-}
 a{
   width: 100%;
 }
+
+ion-item{
+  margin-right: 16px;
+}
+
 ion-card{
   width: 100%;
   display: flex;
