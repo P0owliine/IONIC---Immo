@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
 
 const optionRequete = {
@@ -11,29 +12,36 @@ const optionRequete = {
   templateUrl: './liste-resultats.page.html',
   styleUrls: ['./liste-resultats.page.scss'],
 })
-export class ListeResultatsPage {
-  results: any;
-  id = sessionStorage.getItem('clicked_region');
-  url = 'http://localhost/immo-api/public/annonce/getAnnoncesByRegion/' + this.id;
+export class ListeResultatsPage implements OnInit {
+  results: [];
 
-  constructor(public http: HttpClient) {
-    console.log(this.id);
-    this.getAnnonces();
+  constructor(public http: HttpClient, private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('idRegion');
+    console.log(id);
+    if (id !== null) {
+      const url = 'http://localhost/immo-api/public/annonce/getAnnoncesByRegion/' + id;
+      this.getAnnonces(url);
+    } else {
+      window.location.href = '../tab1/';
+    }
   }
 
-  public getAnnonces(): void {
+  public getAnnonces(url): void {
     let data: Observable<any>;
-    data = this.http.get(this.url, optionRequete);
+    data = this.http.get(url, optionRequete);
     data.subscribe(resultat => {
       this.results = resultat;
       console.log(this.results);
+      if (this.results.length === 0) {
+        const results = document.getElementById('results');
+        results.innerHTML = 'Aucune annonce';
+      }
     });
   }
 
   clickAnnonce(id) {
-    sessionStorage.setItem('annonce_info', this.results[0].title);
-    console.log(this.results[0]);
-    console.log(sessionStorage.getItem('annonce_info'));
-    window.location.href = '../details-annonce';
+    console.log(id);
   }
 }

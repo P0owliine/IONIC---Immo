@@ -24,12 +24,8 @@ export class Tab4Page {
   pwdInput: any;
   data: any;
   userId: any;
-<<<<<<< HEAD
   announces: any;
-=======
-  announces: any [];
   toast: any;
->>>>>>> bc7ec7589f33e7fbda89c037e4324d256232e57e
 
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
     this.settingToast();

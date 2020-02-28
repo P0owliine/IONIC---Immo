@@ -1,22 +1,45 @@
 <ion-header>
+  <ion-toolbar>
     <ion-searchbar></ion-searchbar>
-  <!--{{results.length}} annonces -->
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list id="results">
     <ion-item>
-        <ion-card class="welcome-card" (click)="clickAnnonce(0)">
-            <img src="../../assets/icon/annonce1-1.jpeg" alt="" />
-            <ion-card-content>
-              <ion-card-title>{{results[0].title}}</ion-card-title>
-              <p class="price">{{results[0].price}}€</p>
-              <p>{{results[0].type}}</p>
-              <p>{{results[0].place}}</p>
-              <p class="date">{{results[0].date}}</p>
-            </ion-card-content>
-        </ion-card>
+      <ion-card class="welcome-card">
+        <img src="../../assets/icon/annonce1-1.jpeg" alt="" />
+        <ion-card-content>
+          <!-- <ion-card-title>{{results[0].title}}</ion-card-title>
+          <p class="price">{{results[0].price}}€</p>
+          <p>{{results[0].type}}</p>
+          <p>{{results[0].place}}</p>
+          <p class="date">{{results[0].date}}</p>-->
+        </ion-card-content>
+      </ion-card>
     </ion-item>
-
   </ion-list>
 </ion-content>
+
+<ion-tab-bar slot="bottom" color="primary">
+  <ion-tab-button href="/tabs/tab1">
+    <ion-icon name="home"></ion-icon>
+    <ion-label>Accueil</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button href="/tabs/tab2">
+    <ion-icon name="heart"></ion-icon>
+    <ion-label>Favoris</ion-label>
+  </ion-tab-button>
+
+
+  <ion-tab-button href="/tabs/tab3">
+    <ion-icon name="chatbubbles"></ion-icon>
+    <ion-label>Messages</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button href="/tabs/tab4">
+    <ion-icon name="contact"></ion-icon>
+    <ion-label>Mon compte</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>
