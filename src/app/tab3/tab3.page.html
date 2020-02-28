@@ -5,19 +5,19 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content [hidden]="showingMessage">
   <ng-template [ngIf]=checkIfLogged()>
-  <ion-card class="welcome-card" (click)="showMessage()">
-    <img src="/assets/icon/annonce1-1.jpeg" alt="" />
-    <ion-card-content>
-      <ion-card-title>Nom</ion-card-title>
-      <p>Annonce ..</p>
-      <p class="date">date + message..</p>
-    </ion-card-content>
-  </ion-card>
     <ion-list>
-      <ion-item *ngFor="let annonce of annonces">
-        <ion-badge color="primary" item-left>{{annonce['title']}}</ion-badge>
+      <ion-item *ngFor="let message of messages">
+        <ion-card class="welcome-card" (click)="showMessage(message)">
+          <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+          <ion-card-content>
+            <ion-card-title>{{message['title']}}</ion-card-title>
+            <p>{{message['message']}}</p>
+            <p class="date">{{message['date']}}</p>
+            <p></p>
+          </ion-card-content>
+        </ion-card>
       </ion-item>
     </ion-list>
   </ng-template>
@@ -26,7 +26,14 @@
   </ng-template>
 </ion-content>
 
-<ion-footer>
+
+<ion-list [hidden]="!showingMessage">
+  <ion-item *ngFor="let message of messages">
+    {{messageShown[0]}}
+    {{messageShown[1]}}
+  </ion-item>
+</ion-list>
+<ion-footer [hidden]="!showingMessage">
   <ion-item>
     <ion-input name="messageInput" [(ngModel)]="messageInput" placeholder="Ecrivez ici..."></ion-input>
     <ion-button item-right (click)="sendMessage()">Envoyer</ion-button>
