@@ -13,12 +13,15 @@ const optionRequete = {
 })
 export class Tab3Page {
   readonly root = 'http://localhost:8000';
+  showingMessage: boolean;
   messageInput = '';
-  messages = [];
+  messageShown: any;
+  messages: any;
   toast: any;
   annonces: any;
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
-    this.getAnnonces();
+    this.showingMessage = false;
+    this.getMessages();
   }
   async settingToast() {
     this.toast = this.toastCtrl.create({
@@ -28,8 +31,10 @@ export class Tab3Page {
     });
     return await this.toast.present();
   }
-  showMessage(idAnnonce) {
-    alert('afficher la partie de samy');
+  showMessage(message) {
+    this.messageShown[0] = message['sender'];
+    this.messageShown[1] = message['message'];
+    this.showingMessage = true;
     // hide ion-content
     // show ion-list and ion-footer
     // afficher les messages de la BDD
@@ -47,10 +52,10 @@ export class Tab3Page {
     }
   }
 
-  async getAnnonces() {
-    this.http.get(this.root + '/annonce/getAnnoncesByCompte/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
-      this.annonces = data;
-      JSON.parse(this.annonces);
+  async getMessages() {
+    this.http.get(this.root + '/message/getMessage/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
+      this.messages = data;
+      JSON.parse(this.messages);
     });
   }
 }
