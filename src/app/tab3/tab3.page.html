@@ -5,7 +5,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [hidden]="!showingMessage">
+<ion-content [hidden]="showingMessage">
   <ng-template [ngIf]=checkIfLogged()>
     <ion-list>
       <ion-item *ngFor="let message of messages">
@@ -27,13 +27,13 @@
 </ion-content>
 
 
-<ion-list [hidden]="showingMessage">
+<ion-list [hidden]="!showingMessage">
   <ion-item *ngFor="let message of messages">
     {{messageShown[0]}}
     {{messageShown[1]}}
   </ion-item>
 </ion-list>
-<ion-footer [hidden]="showingMessage">
+<ion-footer [hidden]="!showingMessage">
   <ion-item>
     <ion-input name="messageInput" [(ngModel)]="messageInput" placeholder="Ecrivez ici..."></ion-input>
     <ion-button item-right (click)="sendMessage()">Envoyer</ion-button>
