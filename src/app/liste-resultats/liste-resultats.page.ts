@@ -14,10 +14,14 @@ const optionRequete = {
 })
 export class ListeResultatsPage implements OnInit {
   results: [];
+  resultsList: any;
+  noAnnonce: any;
 
   constructor(public http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.resultsList = document.getElementById('resultList');
+    this.noAnnonce = document.getElementById('noAnnonce');
     const id = this.route.snapshot.paramMap.get('idRegion');
     console.log(id);
     if (id !== null) {
@@ -33,10 +37,10 @@ export class ListeResultatsPage implements OnInit {
     data = this.http.get(url, optionRequete);
     data.subscribe(resultat => {
       this.results = resultat;
-      console.log(this.results);
       if (this.results.length === 0) {
-        const results = document.getElementById('results');
-        results.innerHTML = 'Aucune annonce';
+        this.noAnnonce.style.display = 'block';
+      } else {
+        this.resultsList.style.display = 'inline';
       }
     });
   }

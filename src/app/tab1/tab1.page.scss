@@ -12,9 +12,16 @@ body {
   margin: 0;
 }
 
+ion-content{
+  position: relative;
+}
+
 div.map {
+  margin: 0;
   position: absolute;
-  top:15%;
+  top: calc(50% - 187px);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 div.map>svg>a>path {
