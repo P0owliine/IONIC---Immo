@@ -17,17 +17,16 @@
 </ion-header>
 
 <ion-content>
-  <ng-template [ngIf]=checkIfLogged() *ngFor=" let announce of announces">
-    <ion-icon name="contact" ></ion-icon>
+  <ng-template [ngIf]=checkIfLogged()>
     <ion-label>Mes annonces</ion-label>
-    <ion-card class="welcome-card" >
-      <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+    <ion-card class="welcome-card" *ngFor=" let announce of announces">
+      <img src="/assets/icon/{{ announce.nom}}" alt="{{announce.alt}}" />
       <ion-card-content>
         <ion-card-title>{{ announce.title }}</ion-card-title>
-        <p class="price">Prix €</p>
-        <p>type</p>
-        <p>lieu</p>
-        <p class="date">date</p>
+        <p class="price">{{ announce.price }} €</p>
+        <p>{{ announce.category }}</p>
+        <p>{{ announce.place }}</p>
+        <p class="date">{{ announce.date }}</p>
       </ion-card-content>
     </ion-card>
   </ng-template>

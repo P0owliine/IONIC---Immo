@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {log} from 'util';
 import {Observable} from 'rxjs';
+import {forEach} from "@angular-devkit/schematics";
 
 const optionRequete = {
   headers : new HttpHeaders({'Access-Control-Allow-Origin': '*'})
@@ -34,7 +35,6 @@ export class Tab4Page {
         this.userJson = result;
         this.userId = this.userJson[0].id;
         sessionStorage.setItem('loggedId', this.userId);
-        console.log(sessionStorage.getItem('loggedId'));
         this.testAPI(this.userId);
       });
       this.connected = sessionStorage.getItem('loggedUser');
@@ -48,12 +48,8 @@ export class Tab4Page {
     } else { return false; }
   }
   testAPI(id) {
-  console.log(id);
   this.http.get(this.root + '/annonce/getAnnoncesByCompte/' + id, optionRequete).subscribe(data => {
-    console.log(data);
-    // this.announces = data;
-    this.announces.push(data);
-    console.log(this.announces);
+    this.announces = data;
     }, err => {
       console.log(err);
     });
