@@ -13,12 +13,7 @@ const routes: Routes = [
   {
     path: 'liste-resultats/:idRegion',
     loadChildren: () => import('./liste-resultats/liste-resultats.module').then( m => m.ListeResultatsPageModule)
-  },  {
-    path: 'liste-resultats',
-    loadChildren: () => import('./liste-resultats/liste-resultats.module').then( m => m.ListeResultatsPageModule)
   }
-
-
 ];
 @NgModule({
   imports: [
