@@ -24,12 +24,8 @@ export class Tab4Page {
   pwdInput: any;
   data: any;
   userId: any;
-<<<<<<< HEAD
   announces: any;
-=======
-  announces: any [];
   toast: any;
->>>>>>> bc7ec7589f33e7fbda89c037e4324d256232e57e
 
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
     this.settingToast();
@@ -44,15 +40,17 @@ export class Tab4Page {
   }
   logUser() {
     console.log('Log button clicked');
-    this.data = '{"username": ' + this.usrInput + ', "password": ' + this.pwdInput + '}';
+    this.data = '{"username": "' + this.usrInput + '", "password": "' + this.pwdInput + '"}';
     // tslint:disable-next-line:only-arrow-functions
     this.http.post(this.root + '/compte/login', this.data, optionRequete).subscribe(data => {
+      console.log(data);
       if (data === 1) {
         sessionStorage.setItem('loggedUser', this.usrInput);
         this.http.get(this.root + '/compte/getCompteByUsername/Popo', optionRequete).subscribe(result => {
         this.userJson = result;
         this.userId = this.userJson[0].id;
         sessionStorage.setItem('loggedId', this.userId);
+        this.getAnnonces(this.userId);
         });
         this.connected = sessionStorage.getItem('loggedUser');
       } else {
@@ -65,5 +63,13 @@ export class Tab4Page {
     if (sessionStorage.getItem('loggedUser') != null) {
       return true;
     } else { return false; }
+  }
+
+  getAnnonces(id) {
+    this.http.get(this.root + '/annonce/getAnnoncesByCompte/' + id, optionRequete).subscribe(data => {
+      this.announces = data;
+    }, err => {
+      console.log(err);
+    });
   }
 }
