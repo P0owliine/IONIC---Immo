@@ -5,16 +5,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list id="resultList" *ngFor="let result of results">
-    <ion-item>
+  <ion-list id="resultList" >
+    <ion-item *ngFor="let result of results" href="../details-annonce/{{ result.id_annonce }}">
       <ion-card class="welcome-card">
-        <img src="../../assets/icon/annonce1-1.jpeg" alt="" />
+        <img src="http://bepis.foxgl.ovh/p/immo/{{ result.nom }}" alt="{{ result.title }}" />
         <ion-card-content>
-          <!-- <ion-card-title>{{ result.title }}</ion-card-title>
-          <p class="price">{{results[0].price}}€</p>
-          <p>{{results[0].type}}</p>
-          <p>{{results[0].place}}</p>
-          <p class="date">{{results[0].date}}</p>-->
+          <ion-card-title>{{ result.title }}</ion-card-title>
+          <p class="price">{{result.price}}€</p>
+          <p>{{result.type}}</p>
+          <p>{{result.place}}</p>
+          <p class="date">{{result.date}}</p>
         </ion-card-content>
       </ion-card>
     </ion-item>

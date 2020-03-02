@@ -1,65 +1,51 @@
 <ion-content>
   <div id="images-annonce">
     <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide>
-        <ion-img src="../../assets/icon/annonce1-1.jpeg"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img src="../../assets/icon/annonce1-2.jpeg"></ion-img>
-      </ion-slide>
-      <ion-slide>
-        <ion-img src="../../assets/icon/annonce1-3.jpeg"></ion-img>
+      <ion-slide *ngFor="let image of images">
+        <ion-img src="http://bepis.foxgl.ovh/p/immo/{{ image.nom }}" alt="{{ image.alt }}"></ion-img>
       </ion-slide>
     </ion-slides>
   </div>
   <div id="texte-annonce">
     <div id="header">
-      <h5 id="titre">{{data.title}}</h5>
-      <ion-text color="primary"><h5 id="prix">100 000 €</h5></ion-text>
-      <ion-text color="medium"><p id="date">aujourd'hui 13:56</p></ion-text>
+      <h5 id="titre">{{details.title}}</h5>
+      <ion-text color="primary"><h5 id="prix">{{details.price}}€</h5></ion-text>
+      <ion-text color="medium"><p id="date">{{details.date | date:'shortDate':'+0200' :'fr'}} à {{details.date | date:'shortTime': '+0200' : 'fr'}}</p></ion-text>
     </div>
     <ion-text color="primary"><h5>Critères</h5></ion-text>
     <ion-grid>
       <ion-row>
         <ion-col>
           <ion-text color="medium"><p>SURFACE</p></ion-text>
-          <p id="surface">101m²</p>
+          <p id="surface">{{details.surface}}m²</p>
         </ion-col>
         <ion-col>
           <ion-text color="medium"><p>RÉFÉRENCE</p></ion-text>
-          <p id="ref">170910</p>
+          <p id="ref">{{details.reference}}</p>
         </ion-col>
       </ion-row>
       <ion-row>
       <ion-col>
         <ion-text color="medium"><p>TYPE DE BIEN</p></ion-text>
-        <p id="type-bien">Appartement</p>
+        <p id="type-bien">{{details.type}}</p>
       </ion-col>
       <ion-col>
         <ion-text color="medium"><p>GES</p></ion-text>
-        <p id="GES">D (de 21 à 35)</p>
+        <p id="GES">{{details.GES}}</p>
       </ion-col>
       </ion-row>
     </ion-grid>
     <ion-text color="primary"><h5>Description</h5></ion-text>
-    <p id="desc">NANCY Rue Raymond Poincaré, charmant T5 de caractère
-    composé dune entrée avec placards, salon/séjour, cuisine
-    équipée, 2 chambres et un bureau, dépendances. Copro 5 lots
-    charges 80€/mois</p>
-    <p id="desc-ref">Référence annonce : 170910</p>
+    <p id="desc">{{details.description}}</p>
+    <p id="desc-ref">Référence annonce : {{details.reference}}</p>
   </div>
 </ion-content>
     <ion-tabs>
       <ion-tab-bar slot="bottom" color="primary">
 
-        <ion-tab-button tab="contact">
-          <ion-icon name="call"></ion-icon>
-          <ion-label>Contacter</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="email">
-          <ion-icon name="mail"></ion-icon>
-          <ion-label>Email</ion-label>
+        <ion-tab-button tab="message">
+          <ion-icon name="message"></ion-icon>
+          <ion-label>Message</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="save">

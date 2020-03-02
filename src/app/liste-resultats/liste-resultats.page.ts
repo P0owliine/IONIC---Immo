@@ -28,7 +28,7 @@ export class ListeResultatsPage implements OnInit {
       const url = 'http://localhost/immo-api/public/annonce/getAnnoncesByRegion/' + id;
       this.getAnnonces(url);
     } else {
-      window.location.href = '../tab1/';
+      window.location.href = '../tabs/tab1/';
     }
   }
 
@@ -37,15 +37,12 @@ export class ListeResultatsPage implements OnInit {
     data = this.http.get(url, optionRequete);
     data.subscribe(resultat => {
       this.results = resultat;
+      console.log(this.results);
       if (this.results.length === 0) {
         this.noAnnonce.style.display = 'block';
       } else {
         this.resultsList.style.display = 'inline';
       }
     });
-  }
-
-  clickAnnonce(id) {
-    console.log(id);
   }
 }
