@@ -2,7 +2,7 @@
   <div id="images-annonce">
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide *ngFor="let image of images">
-        <ion-img src="http://bepis.foxgl.ovh/p/immo/{{ image.nom }}" alt="{{ image.alt }}"></ion-img>
+        <ion-img src="../../assets/icon/{{ image.nom }}" alt="{{ image.alt }}" src=""></ion-img>
       </ion-slide>
     </ion-slides>
   </div>
@@ -44,7 +44,7 @@
       <ion-tab-bar slot="bottom" color="primary">
 
         <ion-tab-button tab="message">
-          <ion-icon name="message"></ion-icon>
+          <ion-icon name="mail"></ion-icon>
           <ion-label>Message</ion-label>
         </ion-tab-button>
 

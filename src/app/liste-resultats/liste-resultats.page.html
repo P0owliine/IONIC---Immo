@@ -8,7 +8,7 @@
   <ion-list id="resultList" >
     <ion-item *ngFor="let result of results" href="../details-annonce/{{ result.id_annonce }}">
       <ion-card class="welcome-card">
-        <img src="http://bepis.foxgl.ovh/p/immo/{{ result.nom }}" alt="{{ result.title }}" />
+        <img src="../../assets/icon/{{ result.nom }}" alt="{{ result.title }}" />
         <ion-card-content>
           <ion-card-title>{{ result.title }}</ion-card-title>
           <p class="price">{{result.price}}€</p>

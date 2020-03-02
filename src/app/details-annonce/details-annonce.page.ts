@@ -33,9 +33,7 @@ export class DetailsAnnoncePage implements OnInit {
     const id = this.route.snapshot.paramMap.get('idAnnonce');
     if (id !== null) {
       const url = 'http://localhost/immo-api/public/annonce/getAnnonces/' + id;
-      // const urlImages = 'http://localhost/immo-api/public/image/getImages/' + id;
       this.getDetails(url);
-      // this.getImages(urlImages);
     } else {
       window.location.href = '../tabs/tab1/';
     }
