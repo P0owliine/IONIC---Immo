@@ -19,12 +19,17 @@ export class Tab2Page {
     img: any;
 
   constructor(private http: HttpClient) {
-      this.getFavoris();
+      if (this.checkIfLogged()) {
+          this.getFavoris();
+      }
   }
+    checkIfLogged() {
+        return sessionStorage.getItem('loggedId') != null;
+    }
     getFavoris() {
       this.favoris = '';
       this.img = '';
-      this.http.get(this.root + '/favoris/getFavoris/5', optionRequete).subscribe(data => {
+      this.http.get(this.root + '/favoris/getFavoris/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
         this.favoris = data;
         if (this.favoris.length === 0) {
               this.img = '/assets/icon/favoris.PNG';

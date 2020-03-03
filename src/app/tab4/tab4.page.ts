@@ -17,7 +17,6 @@ const optionRequete = {
 
 export class Tab4Page {
   readonly root = 'http://localhost/immo-api/public';
-  posts: any;
   connected: string;
   userJson: any;
   usrInput: any;
@@ -43,10 +42,9 @@ export class Tab4Page {
     this.data = '{"username": "' + this.usrInput + '", "password": "' + this.pwdInput + '"}';
     // tslint:disable-next-line:only-arrow-functions
     this.http.post(this.root + '/compte/login', this.data, optionRequete).subscribe(data => {
-      console.log(data);
       if (data === 1) {
         sessionStorage.setItem('loggedUser', this.usrInput);
-        this.http.get(this.root + '/compte/getCompteByUsername/Popo', optionRequete).subscribe(result => {
+        this.http.get(this.root + '/compte/getCompteByUsername/' + this.usrInput, optionRequete).subscribe(result => {
         this.userJson = result;
         this.userId = this.userJson[0].id;
         sessionStorage.setItem('loggedId', this.userId);

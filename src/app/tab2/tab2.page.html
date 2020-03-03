@@ -8,7 +8,7 @@
 </ion-header>
 
 <img src="{{ img }}" />
-
+<ng-template [ngIf]=checkIfLogged()>
 <ion-content *ngFor="let favori of favoris">
   <ion-card class="welcome-card">
     <img src="/assets/icon/annonce1-1.jpeg" alt="" />
@@ -20,4 +20,11 @@
       <p class="date">{{ favori.date }}</p>
     </ion-card-content>
   </ion-card>
+</ion-content>
+</ng-template>
+
+<ion-content>
+  <ng-template [ngIf]=!checkIfLogged()>
+    <ion-label>Déconnecté(e).</ion-label>
+  </ng-template>
 </ion-content>

@@ -12,16 +12,18 @@ const optionRequete = {
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  readonly root = 'http://localhost:8000';
+  readonly root = 'http://localhost/immo-api/public';
   showingMessage: boolean;
   messageInput = '';
   messageShown: any;
   messages: any;
   toast: any;
-  annonces: any;
+
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
     this.showingMessage = false;
-    this.getMessages();
+    if (this.checkIfLogged()) {
+      this.getMessages();
+    }
   }
   async settingToast() {
     this.toast = this.toastCtrl.create({
@@ -31,16 +33,11 @@ export class Tab3Page {
     });
     return await this.toast.present();
   }
-  showMessage(message) {
-    this.messageShown[0] = message['sender'];
-    this.messageShown[1] = message['message'];
+  showMessage() {
     this.showingMessage = true;
-    // hide ion-content
-    // show ion-list and ion-footer
-    // afficher les messages de la BDD
   }
   checkIfLogged() {
-    return sessionStorage.getItem('loggedUser') != null;
+    return sessionStorage.getItem('loggedId') != null;
   }
   sendMessage() {
     if (this.messageInput !== '') {
@@ -48,14 +45,14 @@ export class Tab3Page {
       this.messageInput = '';
       console.log('Envoi de message...' + 'message envoyé :' + this.messages[this.messages.length - 1]);
     } else {
-      this.toast.present();
+      // this.toast.present();
     }
   }
 
-  async getMessages() {
+  getMessages() {
     this.http.get(this.root + '/message/getMessage/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
       this.messages = data;
-      JSON.parse(this.messages);
+      console.log(data);
     });
   }
 }
