@@ -15,15 +15,16 @@ const optionRequete = {
 export class ListeResultatsPage implements OnInit {
   results: [];
   resultsList: any;
+  nbAnnonces: any;
   noAnnonce: any;
 
   constructor(public http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.resultsList = document.getElementById('resultList');
+    this.nbAnnonces = document.getElementById('nbAnnonces');
     this.noAnnonce = document.getElementById('noAnnonce');
     const id = this.route.snapshot.paramMap.get('idRegion');
-    console.log(id);
     if (id !== null) {
       const url = 'http://localhost/immo-api/public/annonce/getAnnoncesByRegion/' + id;
       this.getAnnonces(url);
@@ -37,12 +38,14 @@ export class ListeResultatsPage implements OnInit {
     data = this.http.get(url, optionRequete);
     data.subscribe(resultat => {
       this.results = resultat;
-      console.log(this.results);
       if (this.results.length === 0) {
         this.noAnnonce.style.display = 'block';
       } else {
         this.resultsList.style.display = 'inline';
+        this.nbAnnonces.style.display = 'inline';
+        this.nbAnnonces.innerHTML = this.results.length + ' annonces';
       }
     });
   }
+
 }

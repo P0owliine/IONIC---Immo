@@ -1,4 +1,9 @@
 <ion-content>
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <div id="images-annonce">
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide *ngFor="let image of images">

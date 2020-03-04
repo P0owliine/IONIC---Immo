@@ -1,10 +1,13 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-searchbar></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div id="nbAnnoncesDiv">
+    <p id="nbAnnonces"></p>
+  </div>
   <ion-list id="resultList" >
     <ion-item *ngFor="let result of results" href="../details-annonce/{{ result.id_annonce }}">
       <ion-card class="welcome-card">

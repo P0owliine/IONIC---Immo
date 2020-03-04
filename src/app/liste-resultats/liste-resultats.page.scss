@@ -15,6 +15,13 @@ ion-content{
   position: relative;
 }
 
+#nbAnnoncesDiv{
+  margin: 16px 24px 8px;
+}
+#nbAnnonces{
+  display: none;
+  color: #989aa2;
+}
 #noAnnonce{
   display: none;
   font-size: 8vw;

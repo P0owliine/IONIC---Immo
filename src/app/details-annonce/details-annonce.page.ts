@@ -18,10 +18,10 @@ const optionRequete = {
 })
 export class DetailsAnnoncePage implements OnInit {
 
-
   constructor(public http: HttpClient, private route: ActivatedRoute) {}
   results: [];
   details: any[] = [];
+  texteAnnonce: any;
   images: [];
 
   slideOpts = {
@@ -30,6 +30,7 @@ export class DetailsAnnoncePage implements OnInit {
   };
 
   ngOnInit() {
+    this.texteAnnonce = document.getElementById('texte-annonce');
     const id = this.route.snapshot.paramMap.get('idAnnonce');
     if (id !== null) {
       const url = 'http://localhost/immo-api/public/annonce/getAnnonces/' + id;
@@ -48,6 +49,9 @@ export class DetailsAnnoncePage implements OnInit {
       this.details = this.results[0];
       // @ts-ignore
       this.images =  this.results.images;
+      if (this.results !== []) {
+        this.texteAnnonce.style.display = 'inline';
+      }
     });
   }
 
