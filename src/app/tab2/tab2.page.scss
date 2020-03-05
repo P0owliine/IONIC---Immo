@@ -2,6 +2,10 @@ img{
   width: 155px;
 }
 
+ion-title{
+  text-align: center;
+}
+
 ion-content{
   --ion-background-color:#fafafa;
 }
@@ -25,6 +29,9 @@ p{
   font-size: 12px;
 }
 
+.welcome-card{
+  width: 100%;
+}
 .price{
   padding-top: 10px;
   color: red;

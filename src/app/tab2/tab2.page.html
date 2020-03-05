@@ -1,27 +1,28 @@
 <ion-header>
-
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Favoris
+      Mes favoris
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<img src="{{ img }}" />
-<ng-template [ngIf]=checkIfLogged()>
-<ion-content *ngFor="let favori of favoris">
-  <ion-card class="welcome-card">
-    <img src="/assets/icon/annonce1-1.jpeg" alt="" />
-    <ion-card-content>
-      <ion-card-title>{{ favori.title }}</ion-card-title>
-      <p class="price">{{ favori.price }} €</p>
-      <p>{{ favori.category }}</p>
-      <p>{{ favori.place }}</p>
-      <p class="date">{{ favori.date }}</p>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  <img src="{{ img }}" />
+  <ng-template [ngIf]=checkIfLogged()>
+  <ion-item *ngFor="let favori of favoris" href="../details-annonce/{{ favori.id }}">
+    <ion-card class="welcome-card" >
+      <img src="/assets/icon/{{ favori.nom }}" alt="{{ favori.alt }}" />
+      <ion-card-content>
+        <ion-card-title>{{ favori.title }}</ion-card-title>
+        <p class="price">{{ favori.price }} €</p>
+        <p>{{ favori.category }}</p>
+        <p>{{ favori.place }}</p>
+        <p class="date">{{ favori.date }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+  </ng-template>
 </ion-content>
-</ng-template>
 
 <ion-content>
   <ng-template [ngIf]=!checkIfLogged()>

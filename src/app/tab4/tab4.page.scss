@@ -3,6 +3,10 @@
   background-size: contain;
   height: 125px;
   text-align: center;
+  margin-bottom: 10px;
+}
+ion-title{
+  text-align: center;
 }
 
 ion-content{
@@ -36,6 +40,9 @@ p{
   font-size: 12px;
 }
 
+.welcome-card{
+  width: 100%;
+}
 .price{
   padding-top: 10px;
   color: red;

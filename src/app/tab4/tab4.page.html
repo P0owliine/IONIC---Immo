@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
       Mon compte
     </ion-title>
@@ -8,7 +8,7 @@
 
 <ion-header class="header">
   <ng-template [ngIf]=checkIfLogged()>
-    <ion-icon name="contact"></ion-icon><br>
+    <ion-icon name="md-contact"></ion-icon><br>
     <ion-label>{{connected}}</ion-label>
   </ng-template>
   <ng-template [ngIf]=!checkIfLogged()>
@@ -18,8 +18,9 @@
 
 <ion-content>
   <ng-template [ngIf]=checkIfLogged()>
-    <ion-label>Mes annonces</ion-label>
-    <ion-card class="welcome-card" *ngFor=" let announce of announces">
+    <ion-label color="primary">Mes annonces</ion-label>
+    <ion-item *ngFor=" let announce of announces" href="../details-annonce/{{ announce.id }}">
+    <ion-card class="welcome-card">
       <img src="/assets/icon/{{ announce.nom}}" alt="{{announce.alt}}" />
       <ion-card-content>
         <ion-card-title>{{ announce.title }}</ion-card-title>
@@ -29,6 +30,7 @@
         <p class="date">{{ announce.date }}</p>
       </ion-card-content>
     </ion-card>
+    </ion-item>
   </ng-template>
   <ng-template [ngIf]=!checkIfLogged()>
     <ion-list>

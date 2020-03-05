@@ -1,13 +1,13 @@
 <ion-content>
   <ion-fab vertical="top" horizontal="start" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button href="../liste-resultats/{{ details.id_region }}">
       <ion-icon name="close"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <div id="images-annonce">
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide *ngFor="let image of images">
-        <ion-img src="../../assets/icon/{{ image.nom }}" alt="{{ image.alt }}" src=""></ion-img>
+        <ion-img src="../../assets/icon/{{ image.nom }}" alt="{{ image.alt }}"></ion-img>
       </ion-slide>
     </ion-slides>
   </div>
@@ -48,7 +48,7 @@
     <ion-tabs>
       <ion-tab-bar slot="bottom" color="primary">
 
-        <ion-tab-button tab="message">
+        <ion-tab-button tab="message" href="../tabs/tab3">
           <ion-icon name="mail"></ion-icon>
           <ion-label>Message</ion-label>
         </ion-tab-button>

@@ -45,6 +45,7 @@ export class ListeResultatsPage implements OnInit {
         this.nbAnnonces.style.display = 'inline';
         this.nbAnnonces.innerHTML = this.results.length + ' annonces';
       }
+      console.log(this.results);
     });
   }
 
