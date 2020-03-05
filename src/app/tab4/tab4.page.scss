@@ -5,12 +5,17 @@
   text-align: center;
 }
 
+ion-content{
+  --ion-background-color:#fafafa;
+}
+
 ion-icon{
   font-size: 75px;
 }
 
 ion-card > img{
   width: 155px;
+  background-color:#ffffff;
 }
 
 ion-card{
