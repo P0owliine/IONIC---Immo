@@ -1,18 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>recherche-avancee</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons style="width: 50px" slot="start">
+      <ion-back-button text="" icon="close" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recherche avancée</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>Effacer</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
+    <ion-label>Region</ion-label>
+    <ion-select interface="popover" value="1">
+      <ion-select-option value="1">Hauts-de-France</ion-select-option>
+      <ion-select-option value="2">Grand Est</ion-select-option>
+      <ion-select-option value="3">Normandie</ion-select-option>
+      <ion-select-option value="4">Ile de France</ion-select-option>
+      <ion-select-option value="5">Bourgogne-Franche-Comté</ion-select-option>
+      <ion-select-option value="6">Centre-Val de Loire</ion-select-option>
+      <ion-select-option value="7">Pays de la Loire</ion-select-option>
+      <ion-select-option value="8">Bretagne</ion-select-option>
+      <ion-select-option value="9">Nouvelle Acquitaine</ion-select-option>
+      <ion-select-option value="10">Occitanie</ion-select-option>
+      <ion-select-option value="11">Auvergne-Rhône-Alpes</ion-select-option>
+      <ion-select-option value="12">Provence-Alpes-Côte d'Azur</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <br>
+  <ion-item>
     <ion-label position="floating">Prix min (€)</ion-label>
     <ion-input inputmode="numeric" type="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Prix max (€)</ion-label>
-    <ion-input inputmode="numeric" type="number"></ion-input>
-  </ion-item>
+  <ion-label position="floating">Prix max (€)</ion-label>
+  <ion-input inputmode="numeric" type="number"></ion-input>
+</ion-item>
   <br/>
   <ion-item>
     <ion-label position="floating">Surface min (m²)</ion-label>
@@ -31,12 +55,11 @@
     <ion-label position="floating">Pièces max</ion-label>
     <ion-input inputmode="numeric" type="number"></ion-input>
   </ion-item>
+  <br>
   <ion-item>
     <ion-label>Maison</ion-label>
-    <ion-checkbox slot="end"></ion-checkbox>
+    <ion-checkbox color="primary" slot="end"></ion-checkbox>
   </ion-item>
-
-
-
-
 </ion-content>
+
+<ion-button expand="full" color="secondary" >Lancer la recherche</ion-button>

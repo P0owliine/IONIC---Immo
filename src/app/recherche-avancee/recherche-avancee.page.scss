@@ -1,3 +1,21 @@
+ion-back-button{
+  display: block;
+}
+
+ion-title{
+  text-align: center;
+}
+
+ion-button{
+  text-transform: none;
+  color: white;
+}
+
 ion-content{
   --ion-background-color:#fafafa;
 }
+
+ion-item{
+  --ion-background-color: white;
+}
+
