@@ -7,13 +7,9 @@
   display: none;
 }
 
-body {
-  background-color: #FFEBEE;
-  margin: 0;
-}
-
 ion-content{
   position: relative;
+  --ion-background-color:#fafafa;
 }
 
 div.map {

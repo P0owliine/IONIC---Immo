@@ -13,7 +13,11 @@ const routes: Routes = [
   {
     path: 'liste-resultats/:idRegion',
     loadChildren: () => import('./liste-resultats/liste-resultats.module').then( m => m.ListeResultatsPageModule)
+  },  {
+    path: 'recherche-avancee',
+    loadChildren: () => import('./recherche-avancee/recherche-avancee.module').then( m => m.RechercheAvanceePageModule)
   }
+
 ];
 @NgModule({
   imports: [

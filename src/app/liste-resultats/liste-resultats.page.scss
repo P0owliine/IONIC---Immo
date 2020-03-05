@@ -13,6 +13,7 @@ ion-toolbar .sc-ion-searchbar-ios-h{
 
 ion-content{
   position: relative;
+  --ion-background-color:#fafafa;
 }
 
 #nbAnnoncesDiv{
@@ -42,6 +43,7 @@ ion-content{
     display: flex;
     height: 160px;
     cursor: pointer;
+    background-color:#ffffff;
   }
 
   ion-card-title{
