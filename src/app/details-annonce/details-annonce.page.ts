@@ -21,6 +21,7 @@ export class DetailsAnnoncePage implements OnInit {
 
   constructor(public http: HttpClient, private route: ActivatedRoute) {
     this.verifFavoris();
+
   }
 
   readonly root = 'http://localhost/immo-api/public';
@@ -30,9 +31,9 @@ export class DetailsAnnoncePage implements OnInit {
   images: [];
   favoris: any;
   img: any;
-  id_annonce: any;
-  id_favoris: any;
-
+  idAnnonce: any;
+  idFavoris: any;
+  saveIcon: any;
   slideOpts = {
     initialSlide: 1,
     speed: 400
@@ -40,10 +41,12 @@ export class DetailsAnnoncePage implements OnInit {
 
   ngOnInit() {
     this.texteAnnonce = document.getElementById('texte-annonce');
-    this.id_annonce = this.route.snapshot.paramMap.get('idAnnonce');
-    if (this.id_annonce !== null) {
-      const url = this.root + '/annonce/getAnnonces/' + this.id_annonce;
+    this.idAnnonce = this.route.snapshot.paramMap.get('idAnnonce');
+    if (this.idAnnonce !== null) {
+      const url = this.root + '/annonce/getAnnonces/' + this.idAnnonce;
       this.getDetails(url);
+      this.saveIcon = document.getElementById('save-icon');
+      this.saveIcon.setAttribute('name', 'heart-empty');
     } else {
       window.location.href = '../tabs/tab1/';
     }
@@ -72,9 +75,10 @@ export class DetailsAnnoncePage implements OnInit {
       this.favoris = data;
       console.log(data[0]);
       while (i < this.favoris.length) {
-        if (data[i].id === this.id_annonce) {
-          this.changeIcon();
-          this.id_favoris = data[i].id;
+        if (data[i].id === this.idAnnonce) {
+          this.saveIcon.setAttribute('name', 'heart');
+          this.idFavoris = data[i].id_favoris;
+          console.log(this.idFavoris);
         }
         i++;
       }
@@ -82,16 +86,24 @@ export class DetailsAnnoncePage implements OnInit {
   }
 
   changeIcon() {
-    const saveIcon = document.getElementById('save-icon');
-    if (saveIcon.getAttribute('name') === 'heart') {
-      saveIcon.setAttribute('name', 'heart-empty');
-      const data = '{"id_favoris": "' + this.id_favoris + '"}';
-      this.http.post(this.root + '/favoris/deleteFavoris', data, optionRequete);
+    if (this.saveIcon.getAttribute('name') === 'heart') {
+      this.saveIcon.setAttribute('name', 'heart-empty');
+      const params = '{"id_favoris": "' + this.idFavoris + '"}';
+      console.log(params);
+      this.http.post(this.root + '/favoris/deleteFavoris', params, optionRequete).subscribe(data => {
+        if (data === 1) {
+          console.log('suppression favoris');
+        }
+      });
     } else {
-      saveIcon.setAttribute('name', 'heart');
-      console.log(this.id_annonce + ' ' + sessionStorage.getItem('loggedId'));
-      const data = '{"id_annonce": "' + this.id_annonce + '", "id_compte": "' + sessionStorage.getItem('loggedId') + '"}';
-      this.http.post(this.root + '/favoris/addFavoris', data, optionRequete);
+      this.saveIcon.setAttribute('name', 'heart');
+      console.log(this.idAnnonce + ' ' + sessionStorage.getItem('loggedId'));
+      const params = '{"id_annonce": "' + this.idAnnonce + '", "id_compte": "' + sessionStorage.getItem('loggedId') + '"}';
+      this.http.post(this.root + '/favoris/addFavoris', params, optionRequete).subscribe(data => {
+        if (data === 1) {
+          console.log('ajout favoris');
+        }
+      });
     }
   }
 }
