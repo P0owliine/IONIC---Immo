@@ -28,6 +28,10 @@ export class Tab4Page {
 
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
     this.settingToast();
+    if (this.checkIfLogged()) {
+      this.getAnnonces(sessionStorage.getItem('loggedId'));
+      this.connected = sessionStorage.getItem('loggedUser');
+    }
   }
   async settingToast() {
     this.toast = this.toastCtrl.create({
