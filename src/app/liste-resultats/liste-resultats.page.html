@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-fab-button href="../tabs/tab1">
-      <ion-icon name="arrow-back"></ion-icon>
-    </ion-fab-button>
+    <ion-buttons style="width: 50px" slot="start">
+      <a href="../tabs/tab1"><ion-icon name="arrow-back" color="light"></ion-icon></a>
+    </ion-buttons>
     <ion-searchbar></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button>Filtres</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

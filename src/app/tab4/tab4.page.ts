@@ -27,7 +27,7 @@ export class Tab4Page {
   toast: any;
 
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
-    this.settingToast();
+    // this.settingToast();
     if (this.checkIfLogged()) {
       this.getAnnonces(sessionStorage.getItem('loggedId'));
       this.connected = sessionStorage.getItem('loggedUser');
@@ -57,7 +57,7 @@ export class Tab4Page {
         this.connected = sessionStorage.getItem('loggedUser');
       } else {
         console.log('connexion échouée');
-        this.toast.present();
+        // this.toast.present();
       }
     });
   }
