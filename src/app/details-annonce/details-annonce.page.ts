@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { AlertController } from '@ionic/angular';
+
 
 registerLocaleData(localeFr, 'fr');
 
@@ -19,7 +21,7 @@ const optionRequete = {
 })
 export class DetailsAnnoncePage implements OnInit {
 
-  constructor(public http: HttpClient, private route: ActivatedRoute) {
+  constructor(public http: HttpClient, private route: ActivatedRoute, private alertCtrl: AlertController) {
     this.verifFavoris();
 
   }
@@ -105,5 +107,37 @@ export class DetailsAnnoncePage implements OnInit {
         }
       });
     }
+  }
+  async showPrompt() {
+    let alert = await this.alertCtrl.create({
+      title: 'Envoyer un message',
+      inputs: [
+        {
+          name: 'message',
+          placeholder: 'Ecrivez ici...'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Envoyer',
+          handler: data => {
+            let params = '{"message": "' + data
+                + '", "id_annonce": "' + this.idAnnonce
+                + '", "id_sender": "' + sessionStorage.getItem('loggedId') + '"}';
+            this.http.post(this.root + '/message/addMessage', params, optionRequete).subscribe(data => {
+              console.log('Response from API :' + data);
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }
