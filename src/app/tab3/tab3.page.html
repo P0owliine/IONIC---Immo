@@ -21,7 +21,7 @@
   <ng-template [ngIf]=checkIfLogged()>
       <ion-item *ngFor="let message of messages">
         <ion-card class="welcome-card" (click)="showMessage(message.id_annonce)">
-          <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+          <img src="/assets/icon/{{ message.nom }}" alt="{{ message.alt }}" />
           <ion-card-content>
             <ion-card-title>{{ message.username }}</ion-card-title>
             <p>{{ message.title }}</p>
@@ -51,7 +51,7 @@
 <ion-content [hidden]="!showingMessage">
   <ion-item *ngFor="let message of messages">
     <ion-card-header>
-      <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+      <img src="/assets/icon/{{ message.nom }}" alt="{{ message.alt }}" />
         <p>{{ message.title }}</p>
         <p class="date">{{ message.date }}</p>
     </ion-card-header>

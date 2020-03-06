@@ -88,7 +88,6 @@ export class Tab3Page {
       return false;
     }
   }
-
   logUser() {
     console.log('Log button clicked');
     this.data = '{"username": "' + this.usrInput + '", "password": "' + this.pwdInput + '"}';
