@@ -65,15 +65,13 @@ export class Tab3Page {
   }
   sendMessage() {
     if (this.messageInput !== '') {
-      this.messages.push(this.messageInput);
       const params = '{"id_annonce": "' + this.idAnnonce
                     + '", "id_sender": "' + sessionStorage.getItem('loggedId')
                     + '", "message": "' + this.messageInput + '"}';
-      console.log(params);
       this.http.post(this.root + '/message/addMessage', params, optionRequete).subscribe(data => {
         if (data === 1) {
           console.log('ajout message');
-          this.showMessage(this.messages);
+          this.showMessage(this.idAnnonce);
           this.messageInput = '';
         }
       });

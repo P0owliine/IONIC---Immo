@@ -57,13 +57,13 @@ export class ListeResultatsPage implements OnInit {
   applyFilters() {
     if (sessionStorage.getItem('priceMin') !== null || sessionStorage.getItem('priceMax') !== null) {
       this.checkPrice();
-    }
+    }/*
     if (sessionStorage.getItem('surfaceMin') !== null || sessionStorage.getItem('surfaceMax') !== null) {
       this.checkSurface();
     }
     if (sessionStorage.getItem('piecesMin') !== null || sessionStorage.getItem('piecesMax') !== null) {
       this.checkPieces();
-    }
+    }*/
   }
 
   checkPrice() {
@@ -73,6 +73,7 @@ export class ListeResultatsPage implements OnInit {
     console.log(priceMin + ' ' + priceMax);
     for (let i = 0; i < this.results.length; i++) {
       if (priceMin !== null) {
+        console.log('yoo' + this.results[i]);
         if (this.results[i].price < priceMin) {
           console.log(this.results[i].price + '<' + priceMin);
           remove = true;
@@ -90,7 +91,7 @@ export class ListeResultatsPage implements OnInit {
       }
 
     }
-  }
+  }/*
 
   checkSurface() {
     const surfaceMin = sessionStorage.getItem('surfaceMin');
@@ -111,5 +112,5 @@ export class ListeResultatsPage implements OnInit {
         this.results.splice(i, 1);
       }
     }
-  }
+  }*/
 }
