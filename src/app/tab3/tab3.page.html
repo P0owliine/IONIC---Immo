@@ -48,17 +48,21 @@
   </ng-template>
 </ion-content>
 
-<ion-content [hidden]="!showingMessage" *ngFor="let message of messages">
-  <ion-card-header>
-    <img src="/assets/icon/{{ message.nom }}" alt="{{ message.alt }}" />
-    <p>{{ message.title }}</p>
-    <p class="date">{{ message.date }}</p>
-  </ion-card-header>
-  <ion-card>
-    <ion-card-content>
-      {{ message.message }}
-    </ion-card-content>
-  </ion-card>
+<ion-content [hidden]="!showingMessage">
+  <ion-item *ngFor="let message of messages">
+    <ion-card-header>
+      <img src="/assets/icon/{{ message.nom }}" alt="{{ message.alt }}" />
+        <p>{{ message.title }}</p>
+        <p class="date">{{ message.date }}</p>
+    </ion-card-header>
+  </ion-item>
+  <ion-item *ngFor="let message of detailMessage">
+    <ion-card >
+      <ion-card-content>
+        {{ message.message }}
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
 </ion-content>
 <ion-item [hidden]="!showingMessage">
     <ion-grid>
