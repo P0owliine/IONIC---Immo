@@ -13,8 +13,8 @@ const optionRequete = {
 })
 export class Tab3Page {
   readonly root = 'http://localhost/immo-api/public';
-  showingMessage: boolean;
-  shownMessage = false;
+  showingMessage = false;
+  shownMessage: any;
   messageInput = '';
   messageShown: any;
   messages: any;
