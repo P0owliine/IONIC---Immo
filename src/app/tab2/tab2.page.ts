@@ -17,8 +17,16 @@ export class Tab2Page {
     readonly root = 'http://localhost/immo-api/public';
     favoris: any ;
     img: any;
+    // connexion
+    connected: string;
+    userJson: any;
+    usrInput: any;
+    pwdInput: any;
+    data: any;
+    userId: any;
 
-  constructor(private http: HttpClient) {
+
+    constructor(private http: HttpClient) {
       if (this.checkIfLogged()) {
           this.getFavoris();
       }
@@ -40,5 +48,23 @@ export class Tab2Page {
 
     }
 
+    logUser() {
+        console.log('Log button clicked');
+        this.data = '{"username": "' + this.usrInput + '", "password": "' + this.pwdInput + '"}';
+        this.http.post(this.root + '/compte/login', this.data, optionRequete).subscribe(data => {
+            if (data === 1) {
+                sessionStorage.setItem('loggedUser', this.usrInput);
+                this.http.get(this.root + '/compte/getCompteByUsername/' + this.usrInput, optionRequete).subscribe(result => {
+                    this.userJson = result;
+                    this.userId = this.userJson[0].id;
+                    sessionStorage.setItem('loggedId', this.userId);
+                    this.getFavoris();
+                });
+                this.connected = sessionStorage.getItem('loggedUser');
+            } else {
+                console.log('connexion échouée');
+            }
+        });
+    }
 }
 

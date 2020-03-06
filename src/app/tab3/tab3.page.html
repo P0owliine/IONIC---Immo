@@ -30,10 +30,21 @@
           </ion-card-content>
         </ion-card>
       </ion-item>
-
   </ng-template>
+
   <ng-template [ngIf]=!checkIfLogged()>
-    <ion-label>Déconnecté(e).</ion-label>
+    <div class="connexion">
+      <div class="titre">
+        <h1>Bonjour !</h1>
+        <ion-label>Connectez-vous pour découvrir toutes nos fonctionnalités.</ion-label>
+      </div>
+
+      <ion-input [(ngModel)]="usrInput" placeholder="Utilisateur"></ion-input>
+      <ion-input type="password" [(ngModel)]="pwdInput" placeholder="Mot de passe"></ion-input>
+      <div class="ion-padding">
+        <ion-button (click)="logUser()" expand="block" type="submit" class="ion-no-margin">Se connecter</ion-button>
+      </div>
+    </div>
   </ng-template>
 </ion-content>
 
