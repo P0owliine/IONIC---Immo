@@ -80,12 +80,10 @@ export class DetailsAnnoncePage implements OnInit {
     this.img = '';
     this.http.get(this.root + '/favoris/getFavoris/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
       this.favoris = data;
-      console.log(data[0]);
       while (i < this.favoris.length) {
         if (data[i].id === this.idAnnonce) {
           this.saveIcon.setAttribute('name', 'heart');
           this.idFavoris = data[i].id_favoris;
-          console.log(this.idFavoris);
         }
         i++;
       }
@@ -96,7 +94,6 @@ export class DetailsAnnoncePage implements OnInit {
     if (this.saveIcon.getAttribute('name') === 'heart') {
       this.saveIcon.setAttribute('name', 'heart-empty');
       const params = '{"id_favoris": "' + this.idFavoris + '"}';
-      console.log(params);
       this.http.post(this.root + '/favoris/deleteFavoris', params, optionRequete).subscribe(data => {
         if (data === 1) {
           console.log('suppression favoris');
@@ -104,7 +101,6 @@ export class DetailsAnnoncePage implements OnInit {
       });
     } else {
       this.saveIcon.setAttribute('name', 'heart');
-      console.log(this.idAnnonce + ' ' + sessionStorage.getItem('loggedId'));
       const params = '{"id_annonce": "' + this.idAnnonce + '", "id_compte": "' + sessionStorage.getItem('loggedId') + '"}';
       this.http.post(this.root + '/favoris/addFavoris', params, optionRequete).subscribe(data => {
         if (data === 1) {
