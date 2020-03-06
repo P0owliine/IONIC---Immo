@@ -3,8 +3,11 @@
   overflow: hidden;
 }
 
-ion-title{
-  text-align: center;
+ion-button{
+  text-transform: none;
+  background-color: #5281d1;
+  border-radius: 5px;
+  color: white;
 }
 
 ion-content{

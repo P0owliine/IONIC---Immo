@@ -69,6 +69,11 @@ export class DetailsAnnoncePage implements OnInit {
     });
   }
 
+  processForm(event) {
+    event.preventDefault();
+
+  }
+
   verifFavoris() {
     let i = 0;
     this.favoris = '';

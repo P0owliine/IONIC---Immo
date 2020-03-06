@@ -8,7 +8,7 @@
 
 <ion-content>
   <ng-template [ngIf]=checkIfLogged()>
-  <img src="{{ img }}" />
+  <img id="no-fav" src="{{ img }}" />
   <ion-item *ngFor="let favori of favoris" href="../details-annonce/{{ favori.id }}">
     <ion-card class="welcome-card" >
       <img src="/assets/icon/{{ favori.nom }}" alt="{{ favori.alt }}" />
