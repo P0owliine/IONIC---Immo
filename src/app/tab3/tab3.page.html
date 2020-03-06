@@ -1,19 +1,31 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ng-template  [ngIf]=!verifTitle()>
     <ion-title>
       Mes messages
     </ion-title>
+    </ng-template>
+
+    <ng-template  [ngIf]=verifTitle() *ngFor="let message of messages">
+        <ion-fab-button href="../tabs/tab3">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-fab-button>
+      <ion-title >
+        {{message.username}}
+      </ion-title>
+    </ng-template>
   </ion-toolbar>
+
 </ion-header>
 <ion-content [hidden]="showingMessage">
   <ng-template [ngIf]=checkIfLogged()>
       <ion-item *ngFor="let message of messages">
-        <ion-card class="welcome-card" (click)="showMessage(message)">
+        <ion-card class="welcome-card" (click)="showMessage(message.id_annonce)">
           <img src="/assets/icon/annonce1-1.jpeg" alt="" />
           <ion-card-content>
-            <ion-card-title>{{ message.title }}</ion-card-title>
-            <p>{{ message.message }}</p>
-            <p class="date">{{ message.date }}</p>
+            <ion-card-title>{{ message.username }}</ion-card-title>
+            <p>{{ message.title }}</p>
+            <p class="date">{{ message.date }} {{ message.message }}</p>
             <p></p>
           </ion-card-content>
         </ion-card>
@@ -26,12 +38,19 @@
 </ion-content>
 
 <ion-content [hidden]="!showingMessage">
-  <ion-item>
-    <ion-badge color="light" item-left>
-      {{ shownMessage.username }}
-      {{ shownMessage.date }} :
-      {{ shownMessage.message }}
-    </ion-badge>
+  <ion-item *ngFor="let message of messages">
+    <ion-card-header>
+      <img src="/assets/icon/annonce1-1.jpeg" alt="" />
+        <p>{{ message.title }}</p>
+        <p class="date">{{ message.date }}</p>
+    </ion-card-header>
+  </ion-item>
+  <ion-item *ngFor="let message of detailMessage">
+    <ion-card >
+      <ion-card-content>
+        {{ message.message }}
+      </ion-card-content>
+    </ion-card>
   </ion-item>
 </ion-content>
 <ion-item [hidden]="!showingMessage">

@@ -18,7 +18,9 @@ export class Tab3Page {
   messageInput = '';
   messageShown: any;
   messages: any;
+  detailMessage: any;
   toast: any;
+  idAnnonce: any;
 
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
     if (this.checkIfLogged()) {
@@ -33,10 +35,20 @@ export class Tab3Page {
     });
     return await this.toast.present();
   }
-  showMessage(message) {
+  getMessages() {
+    this.http.get(this.root + '/message/getMessage/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
+      this.messages = data;
+    });
+  }
+  showMessage(idAnnonce) {
     if (this.showingMessage === false) {
-      this.shownMessage = message;
       this.showingMessage = true;
+      this.http.get(this.root + '/message/getDetailMessage/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
+        this.detailMessage = data;
+        console.log(data);
+        this.idAnnonce = idAnnonce;
+        console.log(this.idAnnonce);
+      });
     } else {
       this.showingMessage = false;
     }
@@ -48,21 +60,28 @@ export class Tab3Page {
   sendMessage() {
     if (this.messageInput !== '') {
       this.messages.push(this.messageInput);
-      // this.http.post(this.root + '/message/addMessage/')
-      this.messageInput = '';
-      console.log('Envoi de message...' + 'message envoyé :' + this.messages[this.messages.length - 1]);
+      const params = '{"id_annonce": "' + this.idAnnonce
+                    + '", "id_sender": "' + sessionStorage.getItem('loggedId')
+                    + '", "message": "' + this.messageInput + '"}';
+      console.log(params);
+      this.http.post(this.root + '/message/addMessage', params, optionRequete).subscribe(data => {
+        if (data === 1) {
+          console.log('ajout message');
+          this.showMessage(this.messages);
+          this.messageInput = '';
+        }
+      });
     } else {
       // this.toast.present();
     }
   }
-
-
-
-  getMessages() {
-    this.http.get(this.root + '/message/getMessage/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
-      this.messages = data;
-      console.log(data);
-      console.log(data[0].title);
-    });
+  verifTitle() {
+    if (this.showingMessage === true) {
+      return true;
+    } else {
+      return false;
+    }
   }
+
+
 }
