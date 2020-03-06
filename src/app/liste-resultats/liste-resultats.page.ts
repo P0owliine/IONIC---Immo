@@ -15,6 +15,7 @@ const optionRequete = {
 export class ListeResultatsPage implements OnInit {
   results: [];
   resultsList: any;
+  resultsTitle: any;
   nbAnnonces: any;
   noAnnonce: any;
 
@@ -22,15 +23,33 @@ export class ListeResultatsPage implements OnInit {
 
   ngOnInit() {
     this.resultsList = document.getElementById('resultList');
+    this.resultsTitle = document.getElementById('resultTitle');
     this.nbAnnonces = document.getElementById('nbAnnonces');
     this.noAnnonce = document.getElementById('noAnnonce');
     const id = this.route.snapshot.paramMap.get('idRegion');
     if (id !== null) {
       const url = 'http://localhost/immo-api/public/annonce/getAnnoncesByRegion/' + id;
+      this.displayTitle(id);
       this.getAnnonces(url);
     } else {
       window.location.href = '../tabs/tab1/';
     }
+  }
+
+  public displayTitle(id): void {
+    const regions = ['Hauts-de-France',
+      'Grand Est',
+      'Normandie',
+      'Île-de-France',
+      'Bourgogne-Franche-Comté',
+      'Centre-Val de Loire',
+      'Pays de la Loire',
+      'Bretagne',
+      'Nouvelle-Aquitaine',
+      'Occitanie',
+      'Auvergne-Rhône-Alpes',
+      'Provence-Alpes-Côte d\'Azur'];
+    this.resultsTitle.innerHTML = 'Annonces ' + regions[id - 1];
   }
 
   public getAnnonces(url): void {
@@ -45,7 +64,6 @@ export class ListeResultatsPage implements OnInit {
         this.nbAnnonces.style.display = 'inline';
         this.nbAnnonces.innerHTML = this.results.length + ' annonces';
       }
-      console.log(this.results);
     });
   }
 

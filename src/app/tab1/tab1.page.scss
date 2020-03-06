@@ -3,8 +3,8 @@
   overflow: hidden;
 }
 
-.mobile {
-  display: none;
+ion-title{
+  text-align: center;
 }
 
 ion-content{
@@ -26,7 +26,7 @@ div.map>svg>a>path {
 }
 
 div.map>svg>a>path:hover {
-  fill: #D32F2F;
+  fill: #D3252D;
 }
 
 div.map>svg {
