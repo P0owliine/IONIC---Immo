@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content>
+  <ng-template [ngIf]="img"><img src="{{ img }}" /></ng-template>
   <ng-template [ngIf]=checkIfLogged()>
-  <img src="{{ img }}" />
   <ion-item *ngFor="let favori of favoris" href="../details-annonce/{{ favori.id }}">
     <ion-card class="welcome-card" >
-      <img src="/assets/icon/{{ favori.nom }}" alt="{{ favori.alt }}" />
+      <img src="/assets/icon/{{ favori.alt }}" alt="{{ favori.alt }}" />
       <ion-card-content>
         <ion-card-title>{{ favori.title }}</ion-card-title>
         <p class="price">{{ favori.price }} €</p>

@@ -109,8 +109,8 @@ export class DetailsAnnoncePage implements OnInit {
     }
   }
   async showPrompt() {
-    let alert = await this.alertCtrl.create({
-      title: 'Envoyer un message',
+    const alert = await this.alertCtrl.create({
+
       inputs: [
         {
           name: 'message',
@@ -128,7 +128,7 @@ export class DetailsAnnoncePage implements OnInit {
         {
           text: 'Envoyer',
           handler: data => {
-            let params = '{"message": "' + data
+            const params = '{"message": "' + data
                 + '", "id_annonce": "' + this.idAnnonce
                 + '", "id_sender": "' + sessionStorage.getItem('loggedId') + '"}';
             this.http.post(this.root + '/message/addMessage', params, optionRequete).subscribe(data => {
