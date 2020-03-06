@@ -41,9 +41,6 @@ export class ListeResultatsPage implements OnInit {
     data = this.http.get(url, optionRequete);
     data.subscribe(resultat => {
       this.results = resultat;
-      if (sessionStorage.getItem('filtres')) {
-        this.applyFilters();
-      }
       if (this.results.length === 0) {
         this.noAnnonce.style.display = 'block';
       } else {
@@ -53,17 +50,18 @@ export class ListeResultatsPage implements OnInit {
       }
     });
   }
+/*
 
   applyFilters() {
     if (sessionStorage.getItem('priceMin') !== null || sessionStorage.getItem('priceMax') !== null) {
       this.checkPrice();
-    }/*
+    }
     if (sessionStorage.getItem('surfaceMin') !== null || sessionStorage.getItem('surfaceMax') !== null) {
       this.checkSurface();
     }
     if (sessionStorage.getItem('piecesMin') !== null || sessionStorage.getItem('piecesMax') !== null) {
       this.checkPieces();
-    }*/
+    }
   }
 
   checkPrice() {
@@ -91,8 +89,7 @@ export class ListeResultatsPage implements OnInit {
       }
 
     }
-  }/*
-
+  }
   checkSurface() {
     const surfaceMin = sessionStorage.getItem('surfaceMin');
     const surfaceMax = sessionStorage.getItem('surfaceMax');
@@ -113,4 +110,5 @@ export class ListeResultatsPage implements OnInit {
       }
     }
   }*/
+
 }
