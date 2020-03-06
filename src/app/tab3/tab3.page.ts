@@ -14,34 +14,41 @@ const optionRequete = {
 export class Tab3Page {
   readonly root = 'http://localhost/immo-api/public';
   showingMessage: boolean;
+  shownMessage = false;
   messageInput = '';
   messageShown: any;
   messages: any;
   toast: any;
 
   constructor(private toastCtrl: ToastController, private http: HttpClient) {
-    this.showingMessage = false;
     if (this.checkIfLogged()) {
       this.getMessages();
     }
   }
   async settingToast() {
     this.toast = this.toastCtrl.create({
-      message: 't kon ou quoi',
+      message: 'Bad input',
       duration: 3000,
       position: 'bottom'
     });
     return await this.toast.present();
   }
-  showMessage() {
-    this.showingMessage = true;
+  showMessage(message) {
+    if (this.showingMessage === false) {
+      this.shownMessage = message;
+      this.showingMessage = true;
+    } else {
+      this.showingMessage = false;
+    }
   }
+
   checkIfLogged() {
     return sessionStorage.getItem('loggedId') != null;
   }
   sendMessage() {
     if (this.messageInput !== '') {
       this.messages.push(this.messageInput);
+      // this.http.post(this.root + '/message/addMessage/')
       this.messageInput = '';
       console.log('Envoi de message...' + 'message envoyé :' + this.messages[this.messages.length - 1]);
     } else {
@@ -49,10 +56,13 @@ export class Tab3Page {
     }
   }
 
+
+
   getMessages() {
     this.http.get(this.root + '/message/getMessage/' + sessionStorage.getItem('loggedId'), optionRequete).subscribe(data => {
       this.messages = data;
       console.log(data);
+      console.log(data[0].title);
     });
   }
 }
